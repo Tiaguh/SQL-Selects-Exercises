@@ -1,46 +1,55 @@
-CREATE DATABASE Cinema_Selects_Activity;
+CREATE DATABASE cinema_selects_activity_script_db;
 
-USE Cinema_Selects_Activity;
+USE cinema_selects_activity_script_db;
 
--- DROP DATABASE Cinema_Selects_Activity;
-
-CREATE TABLE tbl_id_generogenero(
-    id_genero int primary key auto_increment,
-    genero varchar(45) not null
+CREATE TABLE tbl_genero(
+    id_genero INT PRIMARY KEY AUTO_INCREMENT,
+    genero VARCHAR(45) NOT NULL
 );
 
 CREATE TABLE tbl_ator(
-    id_ator int primary key auto_increment,
-    nome_ator varchar(45) not null,
-    sexo varchar(1) not null,
-    dt_nascimento date not null
+    id_ator INT PRIMARY KEY AUTO_INCREMENT,
+    nome_ator VARCHAR(45) NOT NULL,
+    sexo VARCHAR(1) NOT NULL,
+    dt_nascimento DATE NOT NULL
 );
 
 CREATE TABLE tbl_diretor(
-    id_diretor int primary key auto_increment,
-    nome_diretor varchar(45) not null,
-    nacionalidade varchar(10) not null,
-    dt_nascimento date not null
+    id_diretor INT PRIMARY KEY AUTO_INCREMENT,
+    nome_diretor VARCHAR(45) NOT NULL,
+    nacionalidade VARCHAR(10) NOT NULL,
+    dt_nascimento DATE NOT NULL
 );
 
 CREATE TABLE tbl_filme(
-    id_filme int primary key auto_increment,
-    nome_filme_pt varchar(45) not null,
-    nome_filme_en varchar(45),
-    ano_lancamento int(4) not null,
-    duracao int(3) not null,
-    FK_id_genero int not null,
-    FK_id_diretor int not null,
-    constraint FK_id_genero foreign key(FK_id_genero) references tbl_genero(id_genero),
-    constraint FK_id_diretor foreign key(FK_id_diretor) references tbl_diretor(id_diretor)
+    id_filme INT PRIMARY KEY AUTO_INCREMENT,
+    nome_filme_pt VARCHAR(45) NOT NULL,
+    nome_filme_en VARCHAR(45),
+    ano_lancamento INT(4) NOT NULL,
+    duracao INT(3) NOT NULL,
+    FK_id_genero INT NOT NULL,
+    FK_id_diretor INT NOT NULL,
+    CONSTRAINT FK_id_genero FOREIGN KEY(FK_id_genero) REFERENCES tbl_genero(id_genero),
+    CONSTRAINT FK_id_diretor FOREIGN KEY(FK_id_diretor) REFERENCES tbl_diretor(id_diretor)
 );
 
 CREATE TABLE tbl_filme_has_tbl_ator(
-    FK_id_filme int not null,
-    FK_id_ator int not null,
-    constraint FK_id_filme foreign key(FK_id_filme) references tbl_filme(id_filme),
-    constraint FK_id_ator foreign key(FK_id_ator) references tbl_ator(id_ator),
-    primary key(FK_id_filme, FK_id_ator)
+    FK_id_filme INT NOT NULL,
+    FK_id_ator INT NOT NULL,
+    CONSTRAINT FK_id_filme FOREIGN KEY(FK_id_filme) REFERENCES tbl_filme(id_filme),
+    CONSTRAINT FK_id_ator FOREIGN KEY(FK_id_ator) REFERENCES tbl_ator(id_ator),
+    PRIMARY KEY(FK_id_filme, FK_id_ator)
+);
+
+CREATE TABLE tbl_Usuario(
+	id_usuario INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(45) NOT NULL,
+    email VARCHAR(60) NOT NULL,
+    senha VARCHAR(15) NOT NULL,
+	nacionalidade VARCHAR(20) DEFAULT 'Brasileiro',
+    tipo_usuario ENUM('admin', 'comum'),
+	data_hora DATETIME DEFAULT NOW()
+    
 );
 
 # ALTERACOES FEITAS
@@ -140,8 +149,6 @@ INSERT INTO
     tbl_genero
 VALUES
     (null, "Musical");
-    
-SELECT * FROM tbl_genero;    
 
 #INSERT'S NA TABELA ATOR.
 INSERT INTO
@@ -279,7 +286,7 @@ INSERT INTO
         FK_Id_diretor
     )
 VALUES
-    ("Viva: A Vida é Uma
+    ("Viva: A Vida é Uma 
 Festa", 2017, 105, 8, 5);
 
 INSERT INTO
@@ -302,7 +309,7 @@ INSERT INTO
         FK_Id_diretor
     )
 VALUES
-    ("Um Sonho de
+    ("Um Sonho de 
 Liberdade", 1995, 142, 4, 5);
 
 INSERT INTO
@@ -336,7 +343,7 @@ INSERT INTO
         FK_Id_diretor
     )
 VALUES
-    ("Cidade de
+    ("Cidade de 
 Deus", 2002, 135, 2, 3);
 
 INSERT INTO
@@ -348,7 +355,7 @@ INSERT INTO
         FK_Id_diretor
     )
 VALUES
-    ("O Resgate do Soldado
+    ("O Resgate do Soldado 
 Ryan", 1998, 170, 2, 6);
 
 INSERT INTO
@@ -393,7 +400,7 @@ INSERT INTO
         FK_Id_diretor
     )
 VALUES
-    ("Truque de
+    ("Truque de 
 Mestre", 2013, 125, 2, 4);
 
 INSERT INTO
@@ -439,7 +446,7 @@ INSERT INTO
     )
 VALUES
     (
-        "O Senhor dos Anéis: O
+        "O Senhor dos Anéis: O 
 Retorno do Rei",
         2003,
         200,
@@ -467,7 +474,7 @@ INSERT INTO
         FK_Id_diretor
     )
 VALUES
-    ("Star Wars: Os Últimos
+    ("Star Wars: Os Últimos 
 Jedi", 2017, 152, 6, 4);
 
 INSERT INTO
@@ -479,7 +486,7 @@ INSERT INTO
         FK_Id_diretor
     )
 VALUES
-    ("O Menino do Pijama
+    ("O Menino do Pijama 
 Listrado", 2008, 94, 4, 1);
 
 INSERT INTO
@@ -491,7 +498,7 @@ INSERT INTO
         FK_Id_diretor
     )
 VALUES
-    ("O Lobo de Wall
+    ("O Lobo de Wall 
 Street", 2013, 181, 4, 6);
 
 INSERT INTO
@@ -503,7 +510,7 @@ INSERT INTO
         FK_Id_diretor
     )
 VALUES
-    ("A Hora do
+    ("A Hora do 
 Rush", 1998, 98, 3, 5);
 
 INSERT INTO
@@ -544,7 +551,7 @@ INSERT INTO
         FK_Id_diretor
     )
 VALUES
-    ("Beleza
+    ("Beleza 
 Oculta", 2016, 97, 4, 2);
 
 INSERT INTO
@@ -600,7 +607,7 @@ INSERT INTO
         FK_Id_diretor
     )
 VALUES
-    ("Velozes e Furiosos
+    ("Velozes e Furiosos 
 8", 2017, 136, 2, 6);
 
 INSERT INTO
